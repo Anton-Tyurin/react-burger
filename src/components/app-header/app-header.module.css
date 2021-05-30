@@ -1,0 +1,40 @@
+.header {
+  z-index: 10;
+  list-style-type: none;
+  background: var(--header-background);
+}
+
+.headerDesktop {
+  display: grid;
+  grid-template-columns: 40% 20% 40%;
+}
+
+.headerBlock {
+  display: flex;
+  justify-content: center;
+}
+
+.headerItem {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.headerMobile {
+  display: none;
+}
+
+.headerMobileItem {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 320px) {
+  .headerBlock {
+    display: none;
+  }
+  .headerMobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

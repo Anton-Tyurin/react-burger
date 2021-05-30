@@ -1,0 +1,23 @@
+.burgerIngredients {
+  width: 600px;
+}
+.burgerIngredientsBlocksWrapper {
+  max-height: 690px;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2F2F37;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8585AD;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4f4f68;
+}
