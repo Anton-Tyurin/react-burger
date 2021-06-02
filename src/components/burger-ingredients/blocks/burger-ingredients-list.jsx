@@ -6,12 +6,18 @@ import { ingredientsPropTypes } from "../../../prop-types/burger-ingredients-pro
 
 function BurgerIngredientsList(props) {
   const { data, heading } = props;
+
   return (
     <div className="mb-2">
       <h3 className="text text_type_main-medium mb-6">{heading}</h3>
       <div className={`${style.blockBody} pl-4 pr-4`}>
         {data.map((e, index) => {
-          return <BurgerIngredientsCard key={index} cardData={e} />;
+          return (
+            <BurgerIngredientsCard
+              key={index}
+              cardData={e}
+            />
+          );
         })}
       </div>
     </div>
