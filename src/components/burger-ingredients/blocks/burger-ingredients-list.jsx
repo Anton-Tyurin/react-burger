@@ -4,13 +4,13 @@ import BurgerIngredientsCard from "../card/burger-ingredients-card";
 import PropTypes from "prop-types";
 import { ingredientsPropTypes } from "../../../prop-types/burger-ingredients-propTypes";
 
-function BurgerIngredientsBuns(props: any) {
-  const { bunsData } = props;
+function BurgerIngredientsList(props) {
+  const { data, heading } = props;
   return (
     <div className="mb-2">
-      <h3 className="text text_type_main-medium mb-6">Булки</h3>
+      <h3 className="text text_type_main-medium mb-6">{heading}</h3>
       <div className={`${style.blockBody} pl-4 pr-4`}>
-        {bunsData.map((e: any, index: number) => {
+        {data.map((e, index) => {
           return <BurgerIngredientsCard key={index} cardData={e} />;
         })}
       </div>
@@ -18,8 +18,9 @@ function BurgerIngredientsBuns(props: any) {
   );
 }
 
-BurgerIngredientsBuns.propTypes = {
-  bunsData: PropTypes.arrayOf(ingredientsPropTypes.isRequired),
+BurgerIngredientsList.propTypes = {
+  data: PropTypes.arrayOf(ingredientsPropTypes.isRequired),
+  heading: PropTypes.string.isRequired,
 };
 
-export default BurgerIngredientsBuns;
+export default BurgerIngredientsList;

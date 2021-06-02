@@ -1,7 +1,5 @@
 {
-  "parserOptions": {
-    "sourceType": "module"
-  },
+  "parser": "babel-eslint",
   "rules": {
     "valid-jsdoc": 0,
 

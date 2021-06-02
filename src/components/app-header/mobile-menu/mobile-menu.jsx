@@ -5,13 +5,13 @@ import MobileMenuPersonalAcc from "./mobile-menu-personal-acc";
 import MobileMenuOrdersList from "./mobile-menu-orders-list";
 import MobileMenuBurgers from "./mobile-menu-constructor";
 
-function MobileMenu(props: any) {
+function MobileMenu(props) {
   return (
     <section className={style.mobileMenu}>
       <div
         className={`${style.mobileHeading} text text_type_main-medium pl-3 pr-3 pt-4 mb-4`}
       >
-        <h1 className={style.mobileHeader}>Меню</h1>
+        <h2 className={style.mobileHeader}>Меню</h2>
         <li onClick={() => props.toggleMobileMenu(false)}>
           <CloseIcon type="primary" />
         </li>

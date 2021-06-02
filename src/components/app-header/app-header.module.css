@@ -28,7 +28,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 768px) {
   .headerBlock {
     display: none;
   }

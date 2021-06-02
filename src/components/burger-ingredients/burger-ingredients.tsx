@@ -2,10 +2,8 @@ import React from "react";
 import style from "./burger-ingredients.module.css";
 import Tabs from "./burger-ingredients-tabs";
 import { data } from "../../utils/data";
-import BurgerIngredientsBuns from "./blocks/burger-ingredients-buns";
+import BurgerIngredientsList from "./blocks/burger-ingredients-list";
 import PropTypes from "prop-types";
-import BurgerIngredientsSauces from "./blocks/burger-ingredients-sauces";
-import BurgerIngredientsToppings from "./blocks/burger-ingredients-toppings";
 import { ingredientsPropTypes } from "../../prop-types/burger-ingredients-propTypes";
 
 function BurgerIngredients() {
@@ -18,9 +16,9 @@ function BurgerIngredients() {
       <h2 className="text text_type_main-large mt-10 mb-5">Соберите бургер</h2>
       <Tabs />
       <div className={style.burgerIngredientsBlocksWrapper}>
-        <BurgerIngredientsBuns bunsData={bunsData} />
-        <BurgerIngredientsSauces saucesData={saucesData} />
-        <BurgerIngredientsToppings toppingsData={toppingsData} />
+        <BurgerIngredientsList heading={"Булки"} data={bunsData} />
+        <BurgerIngredientsList heading={"Соусы"} data={saucesData} />
+        <BurgerIngredientsList heading={"Начинки"} data={toppingsData} />
       </div>
     </section>
   );
