@@ -27,7 +27,7 @@ function App() {
     <>
       <div className="App">
         <AppHeader />
-        <main className={style.main}>
+          <main className={`${style.main} mb-5`}>
           {fetchedData?.data && fetchedData?.success && (
             <>
               <BurgerIngredients data={fetchedData.data} />
