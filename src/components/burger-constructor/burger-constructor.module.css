@@ -16,7 +16,7 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 10px;
-  max-height: 690px;
+  max-height: 520px;
   overflow: auto;
 }
 

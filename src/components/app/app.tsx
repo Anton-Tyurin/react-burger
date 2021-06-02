@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <AppHeader />
-      <main className={style.main}>
+      <main className={`${style.main} mb-5`}>
         <BurgerIngredients data={data} />
         <BurgerConstructor data={data}  />
       </main>
