@@ -15,7 +15,7 @@ function BurgerIngredientsCard(props: any) {
         width={240}
         height={120}
         src={cardData?.image}
-        alt="cat"
+        alt={cardData?.name}
       />
       <div className={`${style.ingredientPrice} mb-1`}>
         <span className="text text_type_digits-default mr-2">

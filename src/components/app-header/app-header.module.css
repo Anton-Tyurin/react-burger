@@ -1,6 +1,5 @@
 .header {
   z-index: 10;
-  list-style-type: none;
   background: var(--header-background);
 }
 

@@ -10,8 +10,8 @@ function BurgerIngredientsList(props) {
     <div className="mb-2">
       <h3 className="text text_type_main-medium mb-6">{heading}</h3>
       <div className={`${style.blockBody} pl-4 pr-4`}>
-        {data.map((e, index) => {
-          return <BurgerIngredientsCard key={index} cardData={e} />;
+        {data.map((item, index) => {
+          return <BurgerIngredientsCard key={index} cardData={item} />;
         })}
       </div>
     </div>

@@ -7,6 +7,11 @@
   --scrollbar-thumb-hover: #4f4f68;
 }
 
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

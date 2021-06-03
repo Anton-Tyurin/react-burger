@@ -11,8 +11,8 @@ import Currency from "../../images/currency.png";
 
 function BurgerConstructor(props) {
   const { data } = props;
-  const dataBuns = data.filter((e) => e.type === "bun");
-  const dataIngredients = data.filter((e) => e.type !== "bun");
+  const dataBuns = data.filter((item) => item.type === "bun");
+  const dataIngredients = data.filter((item) => item.type !== "bun");
   return (
     <section className={`${style.burgerConstructor} mt-25`}>
       <div className={`${style.constructorItems} mb-10`}>
@@ -23,23 +23,23 @@ function BurgerConstructor(props) {
           isLocked
         />
         <div className={`${style.constructorIngredientsWrapper}`}>
-          {dataIngredients?.map((el, index) => {
+          {dataIngredients?.map((item) => {
             return (
-              <div className={`${style.ingredientItem} pl-4 pr-4 `} key={index}>
+              <div className={`${style.ingredientItem} pl-4 pr-4 `} key={item._id}>
                 <DragIcon type={"primary"} />
                 <ConstructorElement
-                  thumbnail={el.image}
-                  price={el.price}
-                  text={el.name}
+                  thumbnail={item.image}
+                  price={item.price}
+                  text={item.name}
                 />
               </div>
             );
           })}
         </div>
         <ConstructorElement
-          thumbnail={dataBuns[dataBuns.length - 1].image}
-          price={dataBuns[dataBuns.length - 1].price}
-          text={dataBuns[dataBuns.length - 1].name}
+          thumbnail={dataBuns.image}
+          price={dataBuns.price}
+          text={dataBuns.name}
           isLocked
         />
       </div>
