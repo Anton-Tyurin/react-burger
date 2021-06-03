@@ -32,9 +32,9 @@ function BurgerConstructorItems(props) {
         })}
       </div>
       <ConstructorElement
-        thumbnail={dataBuns[dataBuns.length - 1].image}
-        price={dataBuns[dataBuns.length - 1].price}
-        text={dataBuns[dataBuns.length - 1].name}
+        thumbnail={dataBuns[0].image}
+        price={dataBuns[0].price}
+        text={dataBuns[0].name}
         isLocked
       />
     </div>
