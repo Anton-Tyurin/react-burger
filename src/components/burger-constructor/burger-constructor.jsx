@@ -9,8 +9,8 @@ import BurgerConstructorPrice from "./burger-constructor-price";
 
 function BurgerConstructor(props) {
   const { data } = props;
-  const dataBuns = data.filter((e) => e.type === "bun");
-  const dataIngredients = data.filter((e) => e.type !== "bun");
+  const dataBuns = data.filter((item) => item.type === "bun");
+  const dataIngredients = data.filter((item) => item.type !== "bun");
   const [visible, setVisible] = useState(false);
 
   const openModal = () => {

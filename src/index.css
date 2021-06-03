@@ -9,6 +9,11 @@
   --border-color: rgba(76, 76, 255, 0.2);
 }
 
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

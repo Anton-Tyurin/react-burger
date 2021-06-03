@@ -1,7 +1,7 @@
 .header {
   z-index: 10;
   list-style-type: none;
-  background: var(--background);
+  background: var(--header-background);
 }
 
 .headerDesktop {

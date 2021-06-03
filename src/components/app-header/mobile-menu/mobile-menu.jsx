@@ -5,6 +5,7 @@ import MobileMenuPersonalAcc from "./mobile-menu-personal-acc";
 import MobileMenuOrdersList from "./mobile-menu-orders-list";
 import MobileMenuBurgers from "./mobile-menu-constructor";
 
+// TODO: прошу не ревьють блок, в данный момент решил не делать мобилку.
 function MobileMenu(props) {
   return (
     <section className={style.mobileMenu}>
