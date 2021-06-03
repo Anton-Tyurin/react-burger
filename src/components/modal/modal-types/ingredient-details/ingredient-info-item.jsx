@@ -16,7 +16,7 @@ function IngredientInfoItem(props) {
 
 IngredientInfoItem.propTypes = {
   heading: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
 };
 
 export default IngredientInfoItem;

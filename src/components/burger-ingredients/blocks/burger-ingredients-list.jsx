@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { ingredientsPropTypes } from "../../../prop-types/burger-ingredients-propTypes";
 
 function BurgerIngredientsList(props) {
-  const { data, heading } = props;
+  const { data, heading, handleListItemClick } = props;
 
   return (
     <div className="mb-2">
@@ -14,6 +14,7 @@ function BurgerIngredientsList(props) {
         {data.map((item, index) => {
           return (
             <BurgerIngredientsCard
+              handleListItemClick={handleListItemClick}
               key={index}
               cardData={item}
             />
@@ -25,6 +26,7 @@ function BurgerIngredientsList(props) {
 }
 
 BurgerIngredientsList.propTypes = {
+  handleListItemClick: PropTypes.func.isRequired,
   data: PropTypes.arrayOf(ingredientsPropTypes.isRequired),
   heading: PropTypes.string.isRequired,
 };
