@@ -2,6 +2,7 @@ import React from "react";
 import style from "./ingredient-details.module.css";
 import { ingredientsPropTypes } from "../../../../prop-types/burger-ingredients-propTypes";
 import IngredientInfoBlock from "./ingredient-info-block";
+import PropTypes from "prop-types";
 
 function IngredientDetails(props) {
   const { ingredientData } = props;
@@ -21,7 +22,10 @@ function IngredientDetails(props) {
 }
 
 IngredientDetails.propTypes = {
-  ingredientData: ingredientsPropTypes,
+  ingredientData: PropTypes.oneOfType([
+    ingredientsPropTypes.isRequired,
+    PropTypes.oneOf([null]).isRequired,
+  ]),
 };
 
 export default IngredientDetails;
