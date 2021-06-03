@@ -1,0 +1,36 @@
+.burgerConstructor {
+  width: 600px;
+}
+
+.constructorItems {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.constructorIngredientsWrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  max-height: 520px;
+  overflow: auto;
+}
+
+.constructorPriceBlock {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.constructorPrice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ingredientItem {
+  display: flex;
+  align-items: center;
+}

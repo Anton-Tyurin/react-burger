@@ -1,0 +1,20 @@
+.card {
+    position: relative;
+}
+.ingredientPrice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ingredientHeading {
+  display: flex;
+  justify-content: center;
+  min-height: 48px;
+  width: 240px;
+  text-align: center;
+}
+.ingredientCardCounter {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

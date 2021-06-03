@@ -1,0 +1,7 @@
+.burgerIngredients {
+  width: 600px;
+}
+.burgerIngredientsBlocksWrapper {
+  max-height: 690px;
+  overflow: auto;
+}
