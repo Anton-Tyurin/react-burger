@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./ingredient-details.module.css";
+import PropTypes from "prop-types";
 
 function IngredientInfoItem(props) {
   const { heading, value } = props;
@@ -12,5 +13,10 @@ function IngredientInfoItem(props) {
     </li>
   );
 }
+
+IngredientInfoItem.propTypes = {
+  heading: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+};
 
 export default IngredientInfoItem;

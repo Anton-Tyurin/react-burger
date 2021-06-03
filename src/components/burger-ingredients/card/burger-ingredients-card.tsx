@@ -6,7 +6,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ingredientsPropTypes } from "../../../prop-types/burger-ingredients-propTypes";
 import Modal from "../../modal/modal";
-import IngredientDetails from "../../modal/modal-types/ingredient-details";
+import IngredientDetails from "../../modal/modal-types/ingredient-details/ingredient-details";
 
 function BurgerIngredientsCard(props: any) {
   const { cardData } = props;
