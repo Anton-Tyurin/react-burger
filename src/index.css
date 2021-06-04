@@ -3,10 +3,18 @@
   --standart-text-color: #f2f2f3;
   --secondary-text-color: #8585ad;
 
-  --scrollbar-track: #2F2F37;
+  --scrollbar-track: #2f2f37;
   --scrollbar-thumb-hover: #4f4f68;
 
   --border-color: rgba(76, 76, 255, 0.2);
+}
+
+.constructor-element {
+  width: 488px;
+}
+
+.constructor-element__text {
+  flex-grow: 1;
 }
 
 ul {

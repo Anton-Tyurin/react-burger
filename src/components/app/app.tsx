@@ -10,7 +10,12 @@ function App() {
 
   const getData = () => {
     fetch(url)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(res.status);
+      })
       .then((res) => {
         setFetchedData(res);
       })
@@ -27,7 +32,7 @@ function App() {
     <>
       <div className="App">
         <AppHeader />
-          <main className={`${style.main} mb-5`}>
+        <main className={`${style.main} mb-5`}>
           {fetchedData?.data && fetchedData?.success && (
             <>
               <BurgerIngredients data={fetchedData.data} />

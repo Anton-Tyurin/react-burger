@@ -18,9 +18,9 @@ function BurgerConstructorItems(props) {
         isLocked
       />
       <div className={`${style.constructorIngredientsWrapper}`}>
-        {dataIngredients?.map((el, index) => {
+        {dataIngredients?.map(el => {
           return (
-            <div className={`${style.ingredientItem} pl-4 pr-4 `} key={index}>
+            <div className={`${style.ingredientItem} pl-4 pr-4 `} key={el._id}>
               <DragIcon type={"primary"} />
               <ConstructorElement
                 thumbnail={el.image}
