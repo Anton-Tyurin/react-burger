@@ -1,6 +1,6 @@
 .header {
   z-index: 10;
-  background: var(--header-background);
+  background: var(--background);
 }
 
 .headerDesktop {

@@ -5,11 +5,14 @@ import {
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ingredientsPropTypes } from "../../../prop-types/burger-ingredients-propTypes";
+import PropTypes from "prop-types";
 
-function BurgerIngredientsCard(props: any) {
-  const { cardData } = props;
+export const BurgerIngredientsCard = React.memo((props) => {
+  const { cardData, handleListItemClick } = props;
+  const handleClick = () => handleListItemClick(cardData);
+
   return (
-    <div className={`${style.card} mr-6 mb-8"`}>
+    <div onClick={handleClick} className={`${style.card} mr-6 mb-8"`}>
       <img
         className="mb-1"
         width={240}
@@ -27,16 +30,16 @@ function BurgerIngredientsCard(props: any) {
         {cardData?.name}
       </h3>
       <div className={style.ingredientCardCounter}>
-          {/*TODO: для имитации что не у всех есть Counter. потом убрать*/}
-          {Math.random() < 0.5 &&
-          <Counter count={1} size="default"/>}
+        {/*TODO: для имитации что не у всех есть Counter. потом убрать*/}
+        {Math.random() < 0.5 && <Counter count={1} size="default" />}
       </div>
     </div>
   );
-}
+});
 
 BurgerIngredientsCard.propTypes = {
   cardData: ingredientsPropTypes.isRequired,
+  handleListItemClick: PropTypes.func.isRequired,
 };
 
 export default BurgerIngredientsCard;
