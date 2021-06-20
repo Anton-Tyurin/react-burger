@@ -16,15 +16,19 @@ function AppHeader() {
     <>
       <header className={`${style.header} pt-4 pb-4`}>
         <nav>
-          <ul  className={`${style.headerDesktop}`}>
+          <ul className={`${style.headerDesktop}`}>
             <li className={style.headerBlock}>
               <a
+                href="#"
                 className={`${headerItemPadding} ${style.headerItem} text text_type_main-default`}
               >
                 <BurgerIcon type={"primary"} />
                 <span className={`pl-2`}>Конструктор</span>
               </a>
-              <a className={`${headerItemPadding} ${style.headerItem}`}>
+              <a
+                href="#"
+                className={`${headerItemPadding} ${style.headerItem}`}
+              >
                 <ListIcon type={"secondary"} />
                 <span className={`pl-2 text_color_inactive`}>
                   Лента заказов
@@ -32,14 +36,20 @@ function AppHeader() {
               </a>
             </li>
             <li className={`${style.headerBlock} ${style.headerLogo}`}>
-              <a className={`${headerItemPadding} ${style.headerItem}`}>
+              <a
+                href="#"
+                className={`${headerItemPadding} ${style.headerItem}`}
+              >
                 <Logo />
               </a>
             </li>
             <li
               className={`${style.headerBlock} ${style.headerPersonalAccount}`}
             >
-              <a className={`${headerItemPadding} ${style.headerItem}`}>
+              <a
+                href="#"
+                className={`${headerItemPadding} ${style.headerItem}`}
+              >
                 <ProfileIcon type={"secondary"} />
                 <span className={`pl-2 text_color_inactive`}>
                   Личный кабинет

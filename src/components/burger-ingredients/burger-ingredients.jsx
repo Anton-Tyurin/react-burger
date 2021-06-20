@@ -1,19 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import style from "./burger-ingredients.module.css";
 import Tabs from "./burger-ingredients-tabs";
-import { data } from "../../utils/data";
 import BurgerIngredientsList from "./blocks/burger-ingredients-list";
-import PropTypes from "prop-types";
-import { ingredientsPropTypes } from "../../prop-types/burger-ingredients-propTypes";
 import Modal from "../modal/modal";
 import IngredientDetails from "../modal/modal-types/ingredient-details/ingredient-details";
+import { IngredientsContext } from "../../services/services";
 
 function BurgerIngredients() {
+  const data = useContext(IngredientsContext);
   const [activeIngredient, setActiveIngredient] = useState(null);
   const [visible, setVisible] = useState(false);
-  const bunsData = data.filter((item) => item.type === "bun");
-  const saucesData = data.filter((item) => item.type === "sauce");
-  const toppingsData = data.filter((item) => item.type === "main");
+  const saucesData = data?.ingredients?.filter((item) => item.type === "sauce");
+  const toppingsData = data?.ingredients?.filter((item) => item.type === "main");
 
   const openModal = () => {
     setVisible(true);
@@ -35,7 +33,7 @@ function BurgerIngredients() {
         <BurgerIngredientsList
           handleListItemClick={handleListItemClick}
           heading={"Булки"}
-          data={bunsData}
+          data={data?.buns}
         />
         <BurgerIngredientsList
           handleListItemClick={handleListItemClick}
@@ -56,9 +54,5 @@ function BurgerIngredients() {
     </section>
   );
 }
-
-BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientsPropTypes.isRequired),
-};
 
 export default BurgerIngredients;
