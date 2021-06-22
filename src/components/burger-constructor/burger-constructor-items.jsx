@@ -1,16 +1,32 @@
-﻿import React, { useContext } from "react";
+﻿import React, { useContext, useEffect, useState } from "react";
 import style from "./burger-constructor.module.css";
 import {
   ConstructorElement,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
-import { ingredientsPropTypes } from "../../prop-types/burger-ingredients-propTypes";
 import { IngredientsContext } from "../../services/services";
 
 function BurgerConstructorItems(props) {
-  const { ingredientsData } = props;
+  const { setBurgerActualData, setOrderPrice } = props;
   const data = useContext(IngredientsContext);
+
+  // TODO: для имитации разного набора заказа и его суммы;
+  const [randomIngredients] = useState([...data?.ingredients]);
+  useEffect(() => {
+    randomIngredients.length = Math.floor(
+      Math.random() * data?.ingredients?.length
+    );
+    setOrderPrice(
+      randomIngredients.reduce((acc, el) => {
+        return acc + el.price;
+      }, data?.buns[0]?.price * 2)
+    );
+
+    const burgerActualData = [...data?.buns, ...randomIngredients];
+    setBurgerActualData(burgerActualData);
+  }, []);
+
   return (
     <div className={`${style.constructorItems} mb-10`}>
       <ConstructorElement
@@ -20,7 +36,7 @@ function BurgerConstructorItems(props) {
         isLocked
       />
       <div className={`${style.constructorIngredientsWrapper}`}>
-        {ingredientsData?.map((el) => {
+        {randomIngredients?.map((el) => {
           return (
             <div className={`${style.ingredientItem} pl-4 pr-4 `} key={el._id}>
               <DragIcon type={"primary"} />
@@ -44,7 +60,8 @@ function BurgerConstructorItems(props) {
 }
 
 BurgerConstructorItems.propTypes = {
-  ingredientsData: PropTypes.arrayOf(ingredientsPropTypes.isRequired),
+  setOrderPrice: PropTypes.func,
+  setBurgerActualData: PropTypes.func,
 };
 
 export default BurgerConstructorItems;
