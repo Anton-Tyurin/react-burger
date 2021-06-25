@@ -17,7 +17,7 @@ function BurgerConstructorItems(props) {
     setOrderPrice(
       constructorIngredients?.reduce((acc, el) => {
         return acc + el?.price;
-      }, constructorBunsType?.price * 2)
+      }, constructorBunsType?.price * 2 || 0)
     );
   }, [constructorBunsType, constructorIngredients]);
 

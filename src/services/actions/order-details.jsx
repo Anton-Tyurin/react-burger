@@ -16,7 +16,7 @@ export const getOrderNumber = () => {
       ...constructorData.constructorIngredients,
       constructorData.constructorBunsType,
     ];
-    const orderInfo = allIngredients?.map((el) => el._id);
+    const orderInfo = allIngredients?.map((el) => el?._id);
     fetch(POST_ORDER_URL, {
       method: "POST",
       headers: {

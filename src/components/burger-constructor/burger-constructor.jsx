@@ -59,7 +59,7 @@ export const BurgerConstructor = React.memo(() => {
           />
           {orderNumber && visible && (
             <Modal onClose={handleCloseModal}>
-              <OrderDetails orderNumber={orderNumber} />
+              <OrderDetails />
             </Modal>
           )}
         </>
