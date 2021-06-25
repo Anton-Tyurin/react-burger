@@ -1,32 +1,29 @@
 import React from "react";
 import style from "./ingredient-details.module.css";
 import IngredientInfoItem from "./ingredient-info-item";
-import { ingredientsPropTypes } from "../../../../prop-types/burger-ingredients-propTypes";
+import { useSelector } from "react-redux";
 
-function IngredientInfoBlock(props) {
-  const { infoData } = props;
-
+function IngredientInfoBlock() {
+  const { activeIngredient } = useSelector(
+    (store) => store.burgerActiveIngredientReducer
+  );
   return (
     <ul className={`${style.detailsInfo} mb-15`}>
       <IngredientInfoItem
         heading={"Калории, ккал"}
-        value={infoData.calories}
+        value={activeIngredient.calories}
       />
       <IngredientInfoItem
         heading={"Белки, г"}
-        value={infoData.proteins}
+        value={activeIngredient.proteins}
       />
-      <IngredientInfoItem heading={"Жиры, г"} value={infoData.fat} />
+      <IngredientInfoItem heading={"Жиры, г"} value={activeIngredient.fat} />
       <IngredientInfoItem
         heading={"Углеводы, ккал"}
-        value={infoData.carbohydrates}
+        value={activeIngredient.carbohydrates}
       />
     </ul>
   );
 }
-
-IngredientInfoBlock.propTypes = {
-  infoData: ingredientsPropTypes.isRequired,
-};
 
 export default IngredientInfoBlock;

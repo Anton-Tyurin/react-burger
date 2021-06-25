@@ -34,3 +34,11 @@
   display: flex;
   align-items: center;
 }
+.ingredientsEmpty {
+  border: #4f4f68 dashed 1px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+}
