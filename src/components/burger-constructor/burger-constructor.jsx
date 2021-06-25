@@ -1,46 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./burger-constructor.module.css";
-import PropTypes from "prop-types";
 import Modal from "../modal/modal";
 import OrderDetails from "../modal/modal-types/order-details/order-details";
-import BurgerConstructorItems from "./burger-constructor-items";
+import BurgerConstructorItems from "./items/burger-constructor-items";
 import BurgerConstructorPrice from "./burger-constructor-price";
+import { useDispatch, useSelector } from "react-redux";
+import { useDrop } from "react-dnd";
+import {
+  addNewConstructorIngredient,
+  BURGER_CONSTRUCTOR_DELETE_ALL,
+} from "../../services/actions/burger-constructor";
+import {
+  getOrderNumber,
+  ORDER_NUMBER_DELETE,
+} from "../../services/actions/order-details";
 
-export const BurgerConstructor = React.memo((props) => {
-  const [visible, setVisible] = useState(false);
+export const BurgerConstructor = React.memo(() => {
+  const dispatch = useDispatch();
   const [orderPrice, setOrderPrice] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const { constructorBunsType, constructorIngredients } = useSelector(
+    (store) => store.burgerConstructorReducer
+  );
+  const { orderNumber } = useSelector((store) => store.orderDetailsReducer);
+  const constructorHasItems =
+    constructorBunsType || !!constructorIngredients?.length;
 
-  const { orderNumber, getOrderNumber, setBurgerActualData } = props;
+  useEffect(() => {
+    if (visible === false) {
+      dispatch({ type: BURGER_CONSTRUCTOR_DELETE_ALL });
+    }
+  }, [visible]);
+
+  const [, dropTarget] = useDrop({
+    accept: "ingredient",
+    drop(item) {
+      dispatch(addNewConstructorIngredient(item));
+    },
+  });
+
   const handleModalOpen = () => {
-    getOrderNumber();
+    dispatch(getOrderNumber());
     setVisible(true);
   };
-  const closeModal = () => {
+  const handleCloseModal = () => {
+    dispatch({ type: ORDER_NUMBER_DELETE });
     setVisible(false);
   };
+
   return (
-    <section className={`${style.burgerConstructor} mt-25`}>
-      <BurgerConstructorItems
-        setOrderPrice={setOrderPrice}
-        setBurgerActualData={setBurgerActualData}
-      />
-      <BurgerConstructorPrice
-        orderPrice={orderPrice}
-        openModal={handleModalOpen}
-      />
-      {visible && (
-        <Modal onClose={closeModal}>
-          <OrderDetails orderNumber={orderNumber} />
-        </Modal>
+    <section ref={dropTarget} className={`${style.burgerConstructor} mt-25`}>
+      {constructorHasItems ? (
+        <>
+          <BurgerConstructorItems setOrderPrice={setOrderPrice} />
+          <BurgerConstructorPrice
+            orderPrice={orderPrice}
+            openModal={handleModalOpen}
+          />
+          {orderNumber && visible && (
+            <Modal onClose={handleCloseModal}>
+              <OrderDetails />
+            </Modal>
+          )}
+        </>
+      ) : (
+        <div
+          className={`${style.ingredientsEmpty} text_type_main-default pl-4 pr-4`}
+        >
+          Перетащите ингредиенты для формирования корзины
+        </div>
       )}
     </section>
   );
 });
-
-BurgerConstructor.propTypes = {
-  getOrderNumber: PropTypes.func.isRequired,
-  setBurgerActualData: PropTypes.func.isRequired,
-  orderNumber: PropTypes.number.isRequired,
-};
 
 export default BurgerConstructor;

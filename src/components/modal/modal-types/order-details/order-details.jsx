@@ -1,13 +1,17 @@
 import React from "react";
 import style from "./order-details.module.css";
 import OrderOk from "../../../../images/order-ok.png";
-import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
-function OrderDetails(props) {
-  const { orderNumber } = props;
+function OrderDetails() {
+  const { orderNumber } = useSelector((store) => store.orderDetailsReducer);
   return (
     <div className={`${style.orderDetailsWrapper} mt-4`}>
-      <span className={`${style.orderDetailsDigits} mb-8 text text_type_digits-large`}>{orderNumber}</span>
+      <span
+        className={`${style.orderDetailsDigits} mb-8 text text_type_digits-large`}
+      >
+        {orderNumber}
+      </span>
       <span className="text text_type_main-medium mb-15">
         идентификатор заказа
       </span>
@@ -27,10 +31,5 @@ function OrderDetails(props) {
     </div>
   );
 }
-
-OrderDetails.propTypes = {
-    orderNumber: PropTypes.number.isRequired,
-};
-
 
 export default OrderDetails;
