@@ -5,20 +5,18 @@ import {
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ingredientsPropTypes } from "../../../prop-types/burger-ingredients-propTypes";
-import PropTypes from "prop-types";
 import { useDrag } from "react-dnd";
 import { useSelector } from "react-redux";
 
 export const BurgerIngredientsCard = React.memo((props) => {
-  const { cardData, handleListItemClick } = props;
+  const { cardData } = props;
 
-  const handleClick = () => handleListItemClick(cardData);
   const { constructorBunsType, constructorIngredients } = useSelector(
     (store) => store.burgerConstructorReducer
   );
 
   const [, dragRef] = useDrag({
-    type: "ingredient",
+    type: "ingredients",
     item: cardData,
     collect: (monitor) => ({
       isDrag: monitor.isDragging(),
@@ -36,11 +34,7 @@ export const BurgerIngredientsCard = React.memo((props) => {
   }, [constructorBunsType, constructorIngredients, cardData]);
 
   return (
-    <div
-      ref={dragRef}
-      onClick={handleClick}
-      className={`${style.card} mr-6 mb-8"`}
-    >
+    <div ref={dragRef} className={`${style.card} mr-6 mb-8"`}>
       <img
         className="mb-1"
         width={240}
@@ -68,7 +62,6 @@ export const BurgerIngredientsCard = React.memo((props) => {
 
 BurgerIngredientsCard.propTypes = {
   cardData: ingredientsPropTypes.isRequired,
-  handleListItemClick: PropTypes.func.isRequired,
 };
 
 export default BurgerIngredientsCard;

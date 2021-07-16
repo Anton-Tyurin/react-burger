@@ -1,5 +1,11 @@
-import { POST_ORDER_URL } from "../../constants/constants";
+import {
+  AUTH_TOKEN_EXPIRED_MESSAGE,
+  POST_ORDER_URL,
+} from "../../constants/constants";
 import React from "react";
+import { executePostRequest } from "../executeRequest";
+import { getCookie } from "../../utils/cookie";
+import { updateToken } from "./auth";
 
 export const ORDER_NUMBER_REQUEST = "ORDER_NUMBER_REQUEST";
 export const ORDER_NUMBER_SUCCESS = "ORDER_NUMBER_SUCCESS";
@@ -7,7 +13,7 @@ export const ORDER_NUMBER_FAILED = "ORDER_NUMBER_FAILED";
 export const ORDER_NUMBER_DELETE = "ORDER_NUMBER_DELETE";
 
 export const getOrderNumber = () => {
-  return function(dispatch, getState) {
+  return async function(dispatch, getState) {
     dispatch({
       type: ORDER_NUMBER_REQUEST,
     });
@@ -17,23 +23,26 @@ export const getOrderNumber = () => {
       constructorData.constructorBunsType,
     ];
     const orderInfo = allIngredients?.map((el) => el?._id);
-    fetch(POST_ORDER_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ingredients: orderInfo }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
+    const token = "Bearer " + getCookie("accessToken");
+    return await executePostRequest(
+      POST_ORDER_URL,
+      { ingredients: orderInfo },
+      {
+        Authorization: token,
+      }
+    )
+      .then((data) => {
+        if (!data?.success && data?.message !== AUTH_TOKEN_EXPIRED_MESSAGE) {
+          throw new Error(data?.message);
         }
-        return Promise.reject(res.status);
-      })
-      .then((res) => {
+        if (data?.message === AUTH_TOKEN_EXPIRED_MESSAGE) {
+          return updateToken()
+            .then(() => dispatch(getOrderNumber()))
+            .catch((e) => console.error(e));
+        }
         dispatch({
           type: ORDER_NUMBER_SUCCESS,
-          orderNumber: res.order?.number,
+          orderNumber: data?.order?.number,
         });
       })
       .catch((e) => {

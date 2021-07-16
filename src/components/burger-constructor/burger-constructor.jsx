@@ -14,15 +14,18 @@ import {
   getOrderNumber,
   ORDER_NUMBER_DELETE,
 } from "../../services/actions/order-details";
+import { useHistory } from "react-router-dom";
 
 export const BurgerConstructor = React.memo(() => {
   const dispatch = useDispatch();
   const [orderPrice, setOrderPrice] = useState(0);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState();
   const { constructorBunsType, constructorIngredients } = useSelector(
     (store) => store.burgerConstructorReducer
   );
   const { orderNumber } = useSelector((store) => store.orderDetailsReducer);
+  const { isLoggedIn } = useSelector((store) => store.authReducer);
+  const history = useHistory();
   const constructorHasItems =
     constructorBunsType || !!constructorIngredients?.length;
 
@@ -33,14 +36,14 @@ export const BurgerConstructor = React.memo(() => {
   }, [visible]);
 
   const [, dropTarget] = useDrop({
-    accept: "ingredient",
+    accept: "ingredients",
     drop(item) {
       dispatch(addNewConstructorIngredient(item));
     },
   });
 
   const handleModalOpen = () => {
-    dispatch(getOrderNumber());
+    isLoggedIn ? dispatch(getOrderNumber()) : history.push("/login");
     setVisible(true);
   };
   const handleCloseModal = () => {

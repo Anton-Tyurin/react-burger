@@ -1,0 +1,40 @@
+.profileWrapper {
+  display: grid;
+  min-height: 100px;
+  width: 1200px;
+  grid-template-columns: 30% 70%;
+  gap: 0 60px;
+  margin: 0 auto;
+}
+
+.profileMenu {
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+.profileContentWrapper {
+  margin-top: 120px;
+}
+.profileMenuItem {
+  cursor: pointer;
+  height: 64px;
+}
+
+.contentUserWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.contentUserButtons {
+  width: 480px;
+  display: flex;
+  justify-content: flex-end;
+  row-gap: 24px;
+}
+
+.activeLink {
+  text-decoration: none;
+  color: #F2F2F3;
+}

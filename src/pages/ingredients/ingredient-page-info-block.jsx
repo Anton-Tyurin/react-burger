@@ -1,10 +1,10 @@
 import React from "react";
-import style from "./ingredient-details.module.css";
-import IngredientInfoItem from "./ingredient-info-item";
+import style from "./ingredient-page.module.css";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import IngredientPageInfoItem from "./ingredient-page-info-item";
 
-function IngredientInfoBlock() {
+export function IngredientPageInfoBlock() {
   const { id } = useParams();
   const selectedIngredient = useSelector(
     (store) =>
@@ -14,16 +14,19 @@ function IngredientInfoBlock() {
   );
   return (
     <ul className={`${style.detailsInfo} mb-15`}>
-      <IngredientInfoItem
+      <IngredientPageInfoItem
         heading={"Калории, ккал"}
         value={selectedIngredient?.calories}
       />
-      <IngredientInfoItem
+      <IngredientPageInfoItem
         heading={"Белки, г"}
         value={selectedIngredient?.proteins}
       />
-      <IngredientInfoItem heading={"Жиры, г"} value={selectedIngredient?.fat} />
-      <IngredientInfoItem
+      <IngredientPageInfoItem
+        heading={"Жиры, г"}
+        value={selectedIngredient?.fat}
+      />
+      <IngredientPageInfoItem
         heading={"Углеводы, ккал"}
         value={selectedIngredient?.carbohydrates}
       />
@@ -31,4 +34,4 @@ function IngredientInfoBlock() {
   );
 }
 
-export default IngredientInfoBlock;
+export default IngredientPageInfoBlock;

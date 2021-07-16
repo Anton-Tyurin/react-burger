@@ -1,0 +1,32 @@
+.ingredientPageWrapper {
+  margin: 100px auto 0;
+  width: 640px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredientPageHeading {
+  text-align: center;
+}
+
+.ingredientPageName {
+  text-align: center;
+}
+
+.ingredientDetailsWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0 100px;
+  flex-direction: column;
+}
+.detailsInfo {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  gap: 20px;
+}
+.detailsInfoItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Logo,
   BurgerIcon,
@@ -9,52 +9,84 @@ import style from "./app-header.module.css";
 import MobileMenu from "./mobile-menu/mobile-menu";
 import LogoMobile from "../../images/logo-mobile.png";
 import MobileMenuBurger from "../../images/mobile-burger-menu.png";
+import { NavLink, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 function AppHeader() {
   const [isMobileMenuActive, toggleMobileMenu] = useState(false);
+  const [activeItem, setActiveItem] = useState();
+  const { isLoggedIn } = useSelector((store) => store.authReducer);
+  const location = useLocation();
+
   const headerItemPadding = "pl-5 pt-4 pr-5 pb-4";
+
+  useEffect(() => {
+    if (location.pathname.includes("feed")) {
+      setActiveItem("feed");
+    } else if (location.pathname.includes("profile")) {
+      setActiveItem("profile");
+    } else {
+      setActiveItem("constructor");
+    }
+  }, [location.pathname]);
+
   return (
     <>
       <header className={`${style.header} pt-4 pb-4`}>
         <nav>
           <ul className={`${style.headerDesktop}`}>
             <li className={style.headerBlock}>
-              <a
-                href="#"
-                className={`${headerItemPadding} ${style.headerItem} text text_type_main-default`}
+              <NavLink
+                exact
+                to="/"
+                className={`${headerItemPadding} ${style.headerItem} ${
+                  activeItem !== "constructor" && "text_color_inactive"
+                } text text_type_main-default`}
               >
                 <BurgerIcon type={"primary"} />
                 <span className={`pl-2`}>Конструктор</span>
-              </a>
-              <a
-                href="#"
+              </NavLink>
+              <NavLink
+                exact
+                to="/feed"
                 className={`${headerItemPadding} ${style.headerItem}`}
               >
                 <ListIcon type={"secondary"} />
-                <span className={`pl-2 text_color_inactive`}>
+                <span
+                  className={`pl-2 ${
+                    activeItem !== "feed" && "text_color_inactive"
+                  }`}
+                >
                   Лента заказов
                 </span>
-              </a>
+              </NavLink>
             </li>
             <li className={`${style.headerBlock} ${style.headerLogo}`}>
-              <a
-                href="#"
+              <NavLink
+                exact
+                to="/"
                 className={`${headerItemPadding} ${style.headerItem}`}
               >
                 <Logo />
-              </a>
+              </NavLink>
             </li>
             <li
               className={`${style.headerBlock} ${style.headerPersonalAccount}`}
             >
-              <a
-                href="#"
+              <NavLink
+                exact
+                to={isLoggedIn ? "/profile" : "/login"}
                 className={`${headerItemPadding} ${style.headerItem}`}
               >
                 <ProfileIcon type={"secondary"} />
-                <span className={`pl-2 text_color_inactive`}>
+                <span
+                  className={`pl-2 ${
+                    activeItem !== "profile" && "text_color_inactive"
+                  }`}
+                >
                   Личный кабинет
                 </span>
-              </a>
+              </NavLink>
             </li>
           </ul>
         </nav>
