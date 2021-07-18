@@ -9,6 +9,10 @@
   --border-color: rgba(76, 76, 255, 0.2);
 }
 
+.input__container .input_size_default{
+  min-width: 480px;
+}
+
 .constructor-element {
   width: 488px;
 }

@@ -1,36 +1,87 @@
 import React from "react";
-import style from "./app.module.css";
+import {
+  Route,
+  Switch,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 import AppHeader from "../app-header/app-header";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import { useDispatch, useSelector } from "react-redux";
-import { getBurgerIngredients } from "../../services/actions/burger-ingredients";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import BurgerConstructor from "../burger-constructor/burger-constructor";
+import {
+  FeedPage,
+  ForgotPasswordPage,
+  LoginPage,
+  MainPage,
+  NotFoundPage,
+  ProfilePageLayout,
+  RegisterPage,
+  IngredientPage,
+  ResetPasswordPage,
+} from "../../pages";
+import { ProtectedRoutePassword } from "../protected-route/protected-route-pass";
+import { ProtectedRoute } from "../protected-route/protected-route";
+import { ProtectedRouteAuth } from "../protected-route/protected-route-auth";
+import Modal from "../modal/modal";
+import IngredientDetails from "../modal/modal-types/ingredient-details/ingredient-details";
 
 function App() {
-  const { ingredientsData, isLoading } = useSelector(
-    (store) => store.burgerIngredientsReducer
-  );
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(getBurgerIngredients());
-  }, [dispatch]);
+  const location = useLocation();
+  const history = useHistory();
+  const background =
+    (history.action === "PUSH" || history?.action === "REPLACE") &&
+    location?.state?.background;
+
+  const onModalClose = () => {
+    history.goBack();
+  };
 
   return (
-    <>
-      <div className="App">
+    <div className="App">
+      <>
         <AppHeader />
-        <main className={`${style.main} mb-5`}>
-          {!isLoading && !!ingredientsData?.length && (
-            <DndProvider backend={HTML5Backend}>
-              <BurgerIngredients />
-              <BurgerConstructor />
-            </DndProvider>
-          )}
-        </main>
-      </div>
-    </>
+        <Switch location={background || location}>
+          <Route exact path="/">
+            <MainPage />
+          </Route>
+          <ProtectedRouteAuth exact path="/login">
+            <LoginPage />
+          </ProtectedRouteAuth>
+          <ProtectedRouteAuth exact path="/register">
+            <RegisterPage />
+          </ProtectedRouteAuth>
+          <ProtectedRouteAuth exact path="/forgot-password">
+            <ForgotPasswordPage />
+          </ProtectedRouteAuth>
+          <ProtectedRoutePassword exact path="/reset-password">
+            <ResetPasswordPage />
+          </ProtectedRoutePassword>
+          <Route exact path="/feed">
+            <FeedPage />
+          </Route>
+          <ProtectedRoute exact path="/profile">
+            <ProfilePageLayout />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/profile/orders">
+            <ProfilePageLayout />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/profile/:id">
+            <ProfilePageLayout />
+          </ProtectedRoute>
+          <Route exact path="/ingredients/:id">
+            <IngredientPage />
+          </Route>
+          <Route>
+            <NotFoundPage />
+          </Route>
+        </Switch>
+        {background && (
+          <Route path="/ingredients/:id" exact>
+            <Modal header={"Детали ингредиента"} onClose={onModalClose}>
+              <IngredientDetails />
+            </Modal>
+          </Route>
+        )}
+      </>
+    </div>
   );
 }
 

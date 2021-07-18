@@ -1,0 +1,15 @@
+.notFoundPageWrapper {
+  margin: 150px auto;
+  width: 800px;
+}
+
+.notFoundPageHeading {
+  text-align: center;
+}
+
+.helpDescriptionWrapper {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
