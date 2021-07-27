@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import {
   getFixedDate,
   getOrderData,
-  getOrderPrice,
+  getOrderPrice, getUnicData,
   getStatusName,
 } from "../../../../utils/orders";
 import style from "./feed-order-details.module.css";
@@ -18,6 +18,7 @@ export function FeedDetails() {
       store.wsOrdersReducer.ordersData?.filter((el) => el._id === id)[0]
   );
   const orderData = getOrderData(selectedOrder?.ingredients);
+  const unicData = getUnicData(selectedOrder?.ingredients)
   const getIngredientsCount = (id) =>
     orderData.filter((e) => e._id === id).length;
 
@@ -38,7 +39,7 @@ export function FeedDetails() {
           <div className="mb-10">
             <div className="text text_type_main-medium mb-3">Состав:</div>
             <div className={style.feedOrderItemsWrapper}>
-              {orderData?.map((el, index) => {
+              {unicData?.map((el, index) => {
                 return (
                   <div
                     className={style.feedModalIngredientItem}

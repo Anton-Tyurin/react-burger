@@ -28,11 +28,11 @@ export const getOrderData = (orderIngredients) => {
   );
 };
 
-export const getPicturesData = (orderData) => {
+export const getUnicData = (orderData) => {
   const { ingredientsData } = useSelector(
     (store) => store.burgerIngredientsReducer
   );
-  return ingredientsData.filter((val) => orderData.includes(val._id));
+  return ingredientsData?.filter((val) => orderData?.includes(val._id));
 };
 
 export const getOrdersStatuses = (ordersAllData) => {

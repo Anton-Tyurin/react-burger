@@ -5,7 +5,7 @@ import {
   getFixedDate,
   getOrderData,
   getOrderPrice,
-  getPicturesData,
+  getUnicData,
   getStatusName,
 } from "../../utils/orders";
 import { Link, useLocation } from "react-router-dom";
@@ -14,7 +14,7 @@ function OrdersItem(props) {
   const { item } = props;
   const location = useLocation();
   const orderData = getOrderData(item.ingredients);
-  const picturesData = getPicturesData(item.ingredients);
+  const picturesData = getUnicData(item.ingredients);
   // костылек, конечно, но времени не оч много думать про красивое решение тут)
   let marginLeftAcc = -60;
 

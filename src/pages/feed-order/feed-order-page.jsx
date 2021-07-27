@@ -7,7 +7,7 @@ import {
   getFixedDate,
   getOrderData,
   getOrderPrice,
-  getStatusName,
+  getStatusName, getUnicData,
 } from "../../utils/orders";
 import { WS_CONNECTION_START } from "../../services/actions/feed-socket";
 import { getCookie } from "../../utils/cookie";
@@ -25,6 +25,7 @@ export function FeedDetailsPage() {
       store.wsOrdersReducer.ordersData?.filter((el) => el._id === id)[0]
   );
   const orderData = getOrderData(selectedOrder?.ingredients);
+  const unicData = getUnicData(selectedOrder?.ingredients);
   const getIngredientsCount = (id) =>
     orderData.filter((e) => e._id === id).length;
 
@@ -51,7 +52,7 @@ export function FeedDetailsPage() {
           <div className="mb-10">
             <div className="text text_type_main-medium mb-3">Состав:</div>
             <div className={style.feedOrderItemsWrapper}>
-              {orderData.map((el, index) => {
+              {unicData.map((el, index) => {
                 return (
                   <div
                     className={style.feedPageIngredientItem}
