@@ -11,7 +11,7 @@ export function ProfileContentLayout() {
   const getProfilePage = () => {
     if (location.pathname === "/profile") {
       return <ProfileContentUser />;
-    } else if (location.pathname === "/profile/orders") {
+    } else if (location.pathname === "/profile/order-item") {
       return <ProfileContentOrders />;
     } else {
       return <ProfileContentOrderPage />;

@@ -1,0 +1,35 @@
+.orderInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderInfoWrapper {
+  cursor: pointer;
+  background: #1c1c21;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.orderIngredientsWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.orderIngredientsList, .ingredientPictureMaskWrapper {
+  position: relative;
+}
+
+.ingredientPicture {
+  background: #131316;
+  border-radius: 100px;
+  border: 2px solid #4C4CFF;
+  position: absolute;
+  top: -20px;
+}
+
+.ingredientPictureMask{
+  z-index: 101;
+  right: -285px;
+  position: absolute;
+}
