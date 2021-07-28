@@ -6,7 +6,7 @@ import {
   WS_GET_ORDERS,
 } from "../actions/feed-socket";
 
-const wsOrdersInitialState = {
+export const wsOrdersInitialState = {
   connectionStatus: undefined,
 
   ordersData: [],

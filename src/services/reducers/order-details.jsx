@@ -4,7 +4,7 @@ import {
   ORDER_NUMBER_FAILED,
 } from "../actions/order-details";
 
-const orderDetailsInitialState = {
+export const orderDetailsInitialState = {
   orderNumber: null,
   isLoading: false,
   hasError: false,

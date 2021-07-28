@@ -7,7 +7,7 @@ import {
 } from "../actions/auth";
 import { getCookie } from "../../utils/cookie";
 
-const authInitialState = {
+export const authInitialState = {
   hasLoginError: false,
   successfulLogin: false,
 

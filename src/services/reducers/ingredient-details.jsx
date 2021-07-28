@@ -3,7 +3,7 @@ import {
   INGREDIENT_DETAILS_SET_DATA,
 } from "../actions/ingredient-details";
 
-const burgerActiveIngredientInitialState = {
+export const burgerActiveIngredientInitialState = {
   activeIngredient: null,
 };
 

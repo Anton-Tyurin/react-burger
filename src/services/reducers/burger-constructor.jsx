@@ -3,7 +3,7 @@ import {
   BURGER_CONSTRUCTOR_DELETE_ALL,
 } from "../actions/burger-constructor";
 
-const burgerConstructorInitialState = {
+export const burgerConstructorInitialState = {
   constructorBunsType: null,
   constructorIngredients: [],
 };

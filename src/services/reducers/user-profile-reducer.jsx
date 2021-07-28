@@ -6,7 +6,7 @@ import {
   USER_TO_INITIAL,
 } from "../actions/user-profile";
 
-const userProfileInitialState = {
+export const userProfileInitialState = {
   hasGetError: false,
   successfullyGetCredentials: false,
 
@@ -25,7 +25,7 @@ export const userProfileReducer = (state = userProfileInitialState, action) => {
     case USER_DATA_GET_FAILED: {
       return {
         ...state,
-        hasGetError: false,
+        hasGetError: true,
       };
     }
     case USER_DATA_PATCH_SUCCESS: {
@@ -37,7 +37,7 @@ export const userProfileReducer = (state = userProfileInitialState, action) => {
     case USER_DATA_PATCH_FAILED: {
       return {
         ...state,
-        hasPatchError: false,
+        hasPatchError: true,
       };
     }
     case USER_TO_INITIAL: {
