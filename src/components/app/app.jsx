@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Route,
-  Switch,
-  useHistory,
-  useLocation,
-} from "react-router-dom";
+import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import AppHeader from "../app-header/app-header";
 import {
   FeedPage,
@@ -22,10 +17,16 @@ import { ProtectedRoute } from "../protected-route/protected-route";
 import { ProtectedRouteAuth } from "../protected-route/protected-route-auth";
 import Modal from "../modal/modal";
 import IngredientDetails from "../modal/modal-types/ingredient-details/ingredient-details";
+import { useDispatch, useSelector } from "react-redux";
+import { getBurgerIngredients } from "../../services/actions/burger-ingredients";
+import { FeedDetails } from "../modal/modal-types/feed-order-details/feed-order-details";
+import {FeedDetailsPage} from "../../pages/feed-order/feed-order-page";
 
 function App() {
   const location = useLocation();
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const background =
     (history.action === "PUSH" || history?.action === "REPLACE") &&
     location?.state?.background;
@@ -34,13 +35,20 @@ function App() {
     history.goBack();
   };
 
+  const { ingredientsData, isLoading } = useSelector(
+    (store) => store.burgerIngredientsReducer
+  );
+  React.useEffect(() => {
+    dispatch(getBurgerIngredients());
+  }, [dispatch]);
+
   return (
     <div className="App">
       <>
         <AppHeader />
         <Switch location={background || location}>
           <Route exact path="/">
-            <MainPage />
+            {!isLoading && !!ingredientsData?.length && <MainPage />}
           </Route>
           <ProtectedRouteAuth exact path="/login">
             <LoginPage />
@@ -63,11 +71,14 @@ function App() {
           <ProtectedRoute exact path="/profile/orders">
             <ProfilePageLayout />
           </ProtectedRoute>
-          <ProtectedRoute exact path="/profile/:id">
-            <ProfilePageLayout />
+          <ProtectedRoute exact path="/profile/orders/:id">
+            <FeedDetailsPage />
           </ProtectedRoute>
           <Route exact path="/ingredients/:id">
             <IngredientPage />
+          </Route>
+          <Route exact path="/feed/:id">
+            <FeedDetailsPage />
           </Route>
           <Route>
             <NotFoundPage />
@@ -79,6 +90,26 @@ function App() {
               <IngredientDetails />
             </Modal>
           </Route>
+        )}
+        {background && (
+          <Route exact path="/feed/:id">
+            <Modal
+              onClose={onModalClose}
+              header={location.state.header || "номер не найден"}
+            >
+              <FeedDetails />
+            </Modal>
+          </Route>
+        )}
+        {background && (
+          <ProtectedRoute exact path="/profile/orders/:id">
+            <Modal
+              onClose={onModalClose}
+              header={location.state.header || "номер не найден"}
+            >
+              <FeedDetails />
+            </Modal>
+          </ProtectedRoute>
         )}
       </>
     </div>

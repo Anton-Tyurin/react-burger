@@ -1,6 +1,8 @@
 // key constants
 export const ESC_KEY = 27;
 // endpoints constants
+export const ORDERS_WS_URL = 'wss://norma.nomoreparties.space/orders'
+
 const API_URL = 'https://norma.nomoreparties.space/api/'
 const API_AUTH_URL =  API_URL + 'auth/'
 

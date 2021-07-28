@@ -1,0 +1,27 @@
+.feedPageStatus {
+  color: #00cccc;
+}
+
+.feedOrderPageWrapper {
+  margin: 30px auto;
+  width: 800px;
+}
+.feedPageIngredientItem {
+  display: flex;
+  justify-content: space-between;
+}
+.feedPageImage {
+  width: 60px;
+  background: #131316;
+  border-radius: 100px;
+  border: 2px solid #4c4cff;
+}
+.feedPageIngredientNameBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.feedOrderItemsWrapper {
+  max-height: 250px;
+  overflow: auto;
+}

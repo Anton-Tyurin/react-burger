@@ -2,17 +2,16 @@ import React from "react";
 import style from "./ingredient-details.module.css";
 import IngredientInfoBlock from "./ingredient-info-block";
 import { useSelector } from "react-redux";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function IngredientDetails() {
-
-    const { id } = useParams();
-    const selectedIngredient = useSelector(
-        (store) =>
-            store.burgerIngredientsReducer.ingredientsData?.filter(
-                (el) => el._id === id
-            )[0]
-    );
+  const { id } = useParams();
+  const selectedIngredient = useSelector(
+    (store) =>
+      store.burgerIngredientsReducer.ingredientsData?.filter(
+        (el) => el._id === id
+      )[0]
+  );
 
   return (
     <div className={style.ingredientDetailsWrapper}>

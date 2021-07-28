@@ -1,0 +1,25 @@
+.orderBoardWrapper {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 60px;
+}
+
+.statusesWrapper {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.statusesNumbers {
+  display: flex;
+  flex-direction: column;
+}
+
+.statusesNumberSuccess {
+  color: #00cccc;
+}
+
+.orderDigits {
+  text-shadow: 0 0 16px rgba(51, 51, 255, 0.25), 0 0 8px rgba(51, 51, 255, 0.25),
+    0 4px 32px rgba(51, 51, 255, 0.5);
+}
