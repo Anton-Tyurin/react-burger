@@ -9,7 +9,7 @@ type TInitialState = {
   activeIngredient: TBurgerIngredient | null;
 };
 
-const burgerActiveIngredientInitialState = {
+export const burgerActiveIngredientInitialState = {
   activeIngredient: null,
 };
 

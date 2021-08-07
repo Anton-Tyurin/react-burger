@@ -22,7 +22,7 @@ type TInitialState = {
   ordersData: TBurgerOrder[];
 };
 
-const wsOrdersInitialState = {
+export const wsOrdersInitialState = {
   connectionStatus: undefined,
 
   ordersData: [],
