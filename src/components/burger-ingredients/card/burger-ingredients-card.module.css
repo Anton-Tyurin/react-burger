@@ -1,6 +1,6 @@
 .card {
-    position: relative;
-    cursor: pointer;
+  position: relative;
+  cursor: pointer;
 }
 .ingredientPrice {
   display: flex;
