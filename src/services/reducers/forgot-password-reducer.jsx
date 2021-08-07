@@ -5,7 +5,7 @@ import {
   FORGOT_PASSWORD_TO_INITIAL,
 } from "../actions/forgot-password";
 
-const forgotPasswordInitialState = {
+export const forgotPasswordInitialState = {
   isLoading: false,
   hasError: false,
   successfullySendCode: false,

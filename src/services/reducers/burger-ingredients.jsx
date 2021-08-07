@@ -3,7 +3,7 @@ import {
     BURGER_INGREDIENTS_REQUEST,
     BURGER_INGREDIENTS_SUCCESS
 } from "../actions/burger-ingredients";
-const burgerIngredientsInitialState = {
+export const burgerIngredientsInitialState = {
     ingredientsData: [],
     isLoading: false,
     hasError: false

@@ -4,7 +4,7 @@ import {
   RESET_PASSWORD_TO_INITIAL,
 } from "../actions/reset-password";
 
-const resetPasswordInitialState = {
+export const resetPasswordInitialState = {
   hasError: false,
   successfullyChangedPassword: false,
 };

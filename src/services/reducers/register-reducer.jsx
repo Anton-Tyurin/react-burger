@@ -4,7 +4,7 @@ import {
   REGISTER_TO_INITIAL,
 } from "../actions/register";
 
-const registerInitialState = {
+export const registerInitialState = {
   hasError: false,
   successfulRegistration: false,
 };
