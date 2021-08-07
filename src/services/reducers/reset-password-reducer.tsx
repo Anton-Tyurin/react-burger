@@ -10,7 +10,7 @@ type TInitialState = {
   hasError: boolean;
 };
 
-const resetPasswordInitialState = {
+export const resetPasswordInitialState = {
   hasError: false,
   successfullyChangedPassword: false,
 };

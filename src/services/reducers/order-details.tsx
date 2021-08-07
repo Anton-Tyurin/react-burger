@@ -12,7 +12,7 @@ type TInitialState = {
   isOrderModalShow: boolean,
 };
 
-const orderDetailsInitialState = {
+export const orderDetailsInitialState = {
   orderNumber: null,
   isLoading: false,
   hasError: false,

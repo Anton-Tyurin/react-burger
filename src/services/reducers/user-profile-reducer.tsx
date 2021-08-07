@@ -15,7 +15,7 @@ type TInitialState = {
   hasPatchError: boolean;
 };
 
-const userProfileInitialState = {
+export const userProfileInitialState = {
   hasGetError: false,
   successfullyGetCredentials: false,
 

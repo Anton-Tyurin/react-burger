@@ -9,7 +9,7 @@ type TInitialState = {
   hasError: boolean;
 };
 
-const registerInitialState = {
+export const registerInitialState = {
   hasError: false,
   successfulRegistration: false,
 };

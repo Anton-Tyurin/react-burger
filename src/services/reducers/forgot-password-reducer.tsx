@@ -12,7 +12,7 @@ type TInitialState = {
   successfullySendCode: boolean;
 };
 
-const forgotPasswordInitialState = {
+export const forgotPasswordInitialState = {
   isLoading: false,
   hasError: false,
   successfullySendCode: false,

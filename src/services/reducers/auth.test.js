@@ -6,7 +6,6 @@ import {
   LOGOUT_FAILED,
   LOGOUT_SUCCESS,
 } from "../actions/auth";
-import { getCookie } from "../../utils/cookie";
 
 describe("auth reducer", () => {
   it("should return initial state", () => {

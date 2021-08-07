@@ -12,7 +12,7 @@ type TInitialState = {
   hasError: boolean;
 };
 
-const burgerIngredientsInitialState = {
+export const burgerIngredientsInitialState = {
   ingredientsData: [],
   isLoading: false,
   hasError: false,

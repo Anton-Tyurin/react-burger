@@ -18,7 +18,7 @@ type TInitialState = {
   isLoggedIn: boolean;
 };
 
-const authInitialState = {
+export const authInitialState = {
   hasLoginError: false,
   successfulLogin: false,
 
