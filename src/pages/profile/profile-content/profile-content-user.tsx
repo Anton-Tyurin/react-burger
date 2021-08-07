@@ -13,7 +13,7 @@ import {
 import { getValidatedFields } from "../../../utils/validation";
 import { useDispatch } from "../../../types/types";
 
-export function ProfileContentUser() {
+export const ProfileContentUser: React.FC = () =>  {
   const [userData, setUserData] = React.useState({
     password: "",
     email: "",

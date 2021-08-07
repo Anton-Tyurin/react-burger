@@ -11,7 +11,7 @@ import {
 } from "../../../services/actions/forgot-password";
 import {useDispatch, useSelector} from "../../../types/types";
 
-export function ForgotPasswordPage() {
+export const ForgotPasswordPage: React.FC = () => {
   const [formData, setFormData] = React.useState({ email: "" });
   const dispatch = useDispatch();
   const history = useHistory();

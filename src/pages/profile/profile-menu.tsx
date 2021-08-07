@@ -4,7 +4,7 @@ import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { AUTH_TO_INITIAL, logoutUser } from "../../services/actions/auth";
 import {useDispatch, useSelector} from "../../types/types";
 
-export function ProfileMenu() {
+export const ProfileMenu: React.FC = () =>  {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();

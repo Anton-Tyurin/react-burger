@@ -13,7 +13,7 @@ import { WS_CONNECTION_START } from "../../services/actions/feed-socket";
 import { getCookie } from "../../utils/cookie";
 import {TBurgerIngredient, TBurgerOrder, useDispatch, useSelector} from "../../types/types";
 
-export function FeedDetailsPage() {
+export const FeedDetailsPage: React.FC = () =>  {
   const dispatch = useDispatch();
   const token = getCookie("accessToken");
   const { id } = useParams<{ id: string }>();

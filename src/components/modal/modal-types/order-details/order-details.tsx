@@ -3,7 +3,7 @@ import style from "./order-details.module.css";
 import OrderOk from "../../../../images/order-ok.png";
 import { useSelector } from "../../../../types/types";
 
-function OrderDetails() {
+const OrderDetails: React.FC = () =>  {
   const { orderNumber } = useSelector((store) => store.orderDetailsReducer);
   return (
     <div className={`${style.orderDetailsWrapper} mt-4`}>

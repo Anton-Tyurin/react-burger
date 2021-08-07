@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import styles from "./ingredient-page.module.css";
 import { getBurgerIngredients } from "../../services/actions/burger-ingredients";
 import IngredientPageInfoBlock from "./ingredient-page-info-block";
-import {TBurgerIngredient, useDispatch, useSelector} from "../../types/types";
+import { TBurgerIngredient, useDispatch, useSelector } from "../../types/types";
 
-export function IngredientPage() {
+export const IngredientPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useDispatch();
   React.useEffect(() => {
@@ -38,4 +38,4 @@ export function IngredientPage() {
       <IngredientPageInfoBlock />
     </div>
   );
-}
+};

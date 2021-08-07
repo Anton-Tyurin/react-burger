@@ -9,7 +9,7 @@ import { Link, useHistory } from "react-router-dom";
 import { AUTH_TO_INITIAL, loginUser } from "../../../services/actions/auth";
 import {useDispatch, useSelector} from "../../../types/types";
 
-export function LoginPage() {
+export const LoginPage: React.FC = () =>  {
   const [formData, setFormData] = React.useState({ password: "", email: "" });
   const dispatch = useDispatch();
   const history = useHistory();

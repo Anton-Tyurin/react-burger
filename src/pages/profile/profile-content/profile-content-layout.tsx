@@ -5,7 +5,7 @@ import { ProfileContentOrderPage } from "./profile-content-order-page";
 import React from "react";
 import { TLocation } from "../../../types/types";
 
-export function ProfileContentLayout() {
+export const ProfileContentLayout: React.FC = () =>  {
   const location = useLocation<TLocation>();
 
   const getProfilePage = () => {

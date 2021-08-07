@@ -4,7 +4,7 @@ import IngredientInfoBlock from "./ingredient-info-block";
 import { useParams } from "react-router-dom";
 import { TBurgerIngredient, useSelector } from "../../../../types/types";
 
-function IngredientDetails() {
+const IngredientDetails: React.FC = () =>  {
   const { id } = useParams<{ id: string }>();
   const selectedIngredient = useSelector(
     (store) =>

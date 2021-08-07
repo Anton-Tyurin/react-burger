@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./not-found.module.css"
 
-export function NotFoundPage() {
+export const NotFoundPage: React.FC = () =>  {
   return (
     <div className={styles.notFoundPageWrapper}>
       <h2 className={`text text_type_main-large mb-10 ${styles.notFoundPageHeading}`}>Страница не найдена.</h2>

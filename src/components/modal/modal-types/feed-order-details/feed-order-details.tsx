@@ -11,7 +11,7 @@ import style from "./feed-order-details.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import {TBurgerIngredient, TBurgerOrder, useSelector} from "../../../../types/types";
 
-export function FeedDetails() {
+export const FeedDetails: React.FC = () =>  {
   const { id } = useParams<{ id: string }>();
 
   const selectedOrder = useSelector(

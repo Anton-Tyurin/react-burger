@@ -14,7 +14,7 @@ import {
 } from "../../../services/actions/register";
 import {useDispatch, useSelector} from "../../../types/types";
 
-export function RegisterPage() {
+export const RegisterPage: React.FC = () =>  {
   const [formData, setFormData] = React.useState({
     password: "",
     email: "",

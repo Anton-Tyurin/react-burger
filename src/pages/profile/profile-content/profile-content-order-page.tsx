@@ -4,7 +4,7 @@ import OrdersItem from "../../../components/order-item/orders-item";
 import { getCookie } from "../../../utils/cookie";
 import {TBurgerOrder, useDispatch, useSelector} from "../../../types/types";
 
-export function ProfileContentOrderPage() {
+export const ProfileContentOrderPage: React.FC = () =>  {
   const dispatch = useDispatch();
   const token = getCookie("accessToken");
   React.useEffect(() => {

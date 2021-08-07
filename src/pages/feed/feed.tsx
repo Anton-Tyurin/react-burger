@@ -5,7 +5,7 @@ import { WS_CONNECTION_START } from "../../services/actions/feed-socket";
 import OrdersBoard from "../../components/orders-board/orders-board";
 import {TBurgerOrder, useDispatch, useSelector} from "../../types/types";
 
-export function FeedPage() {
+export const FeedPage: React.FC = () =>  {
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch({ type: WS_CONNECTION_START });

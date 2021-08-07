@@ -3,7 +3,7 @@ import style from "./orders-board.module.css";
 import { getOrdersStatuses } from "../../utils/orders";
 import { useSelector } from "../../types/types";
 
-function OrdersBoard() {
+const OrdersBoard: React.FC = () =>  {
   const { ordersData, totalOrdersCount, todayOrdersCount } = useSelector(
     (store) => store.wsOrdersReducer
   );

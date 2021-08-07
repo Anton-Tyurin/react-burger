@@ -12,7 +12,7 @@ import {
 } from "../../../services/actions/reset-password";
 import { useDispatch, useSelector } from "../../../types/types";
 
-export function ResetPasswordPage() {
+export const ResetPasswordPage: React.FC = () =>  {
   const [formData, setFormData] = React.useState({
     password: "",
     token: "",
