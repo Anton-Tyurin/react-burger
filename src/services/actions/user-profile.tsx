@@ -5,7 +5,7 @@ import {
 } from "../../constants/constants";
 import { getCookie } from "../../utils/cookie";
 import { updateToken } from "./auth";
-import {AppDispatch, AppThunk, TUser} from "../../types/types";
+import { AppThunk, TUser} from "../../types/types";
 
 export const USER_DATA_GET_SUCCESS: "USER_DATA_GET_SUCCESS" =
   "USER_DATA_GET_SUCCESS";
@@ -46,7 +46,7 @@ export type TUserDataActions =
 
 export const getUserCredentials: AppThunk  = () => {
   const token = "Bearer " + getCookie("accessToken");
-  return async function(dispatch: AppDispatch) {
+  return async function(dispatch: any) {
     return await executeGetRequest(GET_PATCH_USER_DATA_URL, {
       Authorization: token,
     })
@@ -75,7 +75,7 @@ export const getUserCredentials: AppThunk  = () => {
 
 export const updateUserCredentials: AppThunk = (updatedFields: TUser) => {
   const token = "Bearer " + getCookie("accessToken");
-  return async function(dispatch: AppDispatch) {
+  return async function(dispatch: any) {
     return await executePatchRequest(GET_PATCH_USER_DATA_URL, updatedFields, {
       Authorization: token,
     })

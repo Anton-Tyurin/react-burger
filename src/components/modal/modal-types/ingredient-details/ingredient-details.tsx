@@ -3,11 +3,12 @@ import style from "./ingredient-details.module.css";
 import IngredientInfoBlock from "./ingredient-info-block";
 import { useParams } from "react-router-dom";
 import { TBurgerIngredient, useSelector } from "../../../../types/types";
+import {RootStateOrAny} from "react-redux";
 
 const IngredientDetails: React.FC = () =>  {
   const { id } = useParams<{ id: string }>();
   const selectedIngredient = useSelector(
-    (store) =>
+    (store: RootStateOrAny) =>
       store.burgerIngredientsReducer.ingredientsData?.filter(
         (el: TBurgerIngredient) => el._id === id
       )[0]

@@ -9,13 +9,18 @@ import {
 } from "../../../../utils/orders";
 import style from "./feed-order-details.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import {TBurgerIngredient, TBurgerOrder, useSelector} from "../../../../types/types";
+import {
+  TBurgerIngredient,
+  TBurgerOrder,
+  useSelector,
+} from "../../../../types/types";
+import {RootStateOrAny} from "react-redux";
 
-export const FeedDetails: React.FC = () =>  {
+export const FeedDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
-  const selectedOrder = useSelector(
-    (store) =>
+  const selectedOrder: TBurgerOrder = useSelector(
+    (store: RootStateOrAny) =>
       store.wsOrdersReducer.ordersData?.filter(
         (el: TBurgerOrder) => el._id === id
       )[0]
@@ -23,7 +28,7 @@ export const FeedDetails: React.FC = () =>  {
   const orderData = getOrderData(selectedOrder?.ingredients);
   const unicData = getUnicData(selectedOrder?.ingredients);
   const getIngredientsCount = (id: string) =>
-    orderData.filter((e: TBurgerOrder) => e._id === id).length;
+    orderData?.filter((e: TBurgerIngredient) => e._id === id).length;
 
   return (
     <>
@@ -42,7 +47,7 @@ export const FeedDetails: React.FC = () =>  {
           <div className="mb-10">
             <div className="text text_type_main-medium mb-3">Состав:</div>
             <div className={style.feedOrderItemsWrapper}>
-              {unicData?.map((el:TBurgerIngredient, index: number) => {
+              {unicData?.map((el: TBurgerIngredient, index: number) => {
                 return (
                   <div
                     className={style.feedModalIngredientItem}
@@ -99,4 +104,4 @@ export const FeedDetails: React.FC = () =>  {
       )}
     </>
   );
-}
+};

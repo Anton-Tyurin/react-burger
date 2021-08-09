@@ -107,7 +107,7 @@ const OrdersItem: React.FC<TProps> = (props) => {
           </div>
           <div style={{ display: "flex" }}>
             <div className="text text_type_digits-default mr-2">
-              {getOrderPrice(orderData)}
+              {orderData && getOrderPrice(orderData)}
             </div>
             <CurrencyIcon type="primary" />
           </div>

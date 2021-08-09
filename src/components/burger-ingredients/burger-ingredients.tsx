@@ -16,7 +16,7 @@ const BurgerIngredients: React.FC = () => {
     saucesBlockTop?: number;
     toppingsBlockTop?: number;
   }>({});
-  const { ingredientsData } = useSelector(
+  const { ingredientsData } = useSelector<{ingredientsData: TBurgerIngredient[]}>(
     (store) => store.burgerIngredientsReducer
   );
   const [activeTab, setActiveTab] = React.useState(TABS_VALUE.BUNS);

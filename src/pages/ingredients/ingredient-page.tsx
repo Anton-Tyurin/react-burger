@@ -4,6 +4,7 @@ import styles from "./ingredient-page.module.css";
 import { getBurgerIngredients } from "../../services/actions/burger-ingredients";
 import IngredientPageInfoBlock from "./ingredient-page-info-block";
 import { TBurgerIngredient, useDispatch, useSelector } from "../../types/types";
+import {RootStateOrAny} from "react-redux";
 
 export const IngredientPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -13,7 +14,7 @@ export const IngredientPage: React.FC = () => {
   }, []);
 
   const selectedIngredient = useSelector(
-    (store) =>
+    (store: RootStateOrAny) =>
       store.burgerIngredientsReducer.ingredientsData?.filter(
         (el: TBurgerIngredient) => el._id === id
       )[0]

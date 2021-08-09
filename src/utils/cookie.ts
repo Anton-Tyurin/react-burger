@@ -1,6 +1,6 @@
 import { AUTH_EXPIRATION_TIME } from "../constants/constants";
 
-export const getCookie = (name) => {
+export const getCookie = (name: string) => {
   const matches = document.cookie.match(
     new RegExp(
       "(?:^|; )" +
@@ -11,7 +11,7 @@ export const getCookie = (name) => {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 };
 
-const setCookie = (name, value, props) => {
+const setCookie = (name: string, value: string | null, props: any) => {
   props = props || {};
   let exp = props.expires;
   if (typeof exp == "number" && exp) {
@@ -22,7 +22,7 @@ const setCookie = (name, value, props) => {
   if (exp && exp.toUTCString) {
     props.expires = exp.toUTCString();
   }
-  value = encodeURIComponent(value);
+  if (value) value = encodeURIComponent(value);
   let updatedCookie = name + "=" + value;
   for (const propName in props) {
     updatedCookie += "; " + propName;
@@ -34,12 +34,13 @@ const setCookie = (name, value, props) => {
   document.cookie = updatedCookie;
 };
 
-export const setCookies = (rawData) => {
+export const setCookies = (rawData: any) => {
   const { refreshToken } = rawData;
   const authToken = rawData.accessToken?.split("Bearer ")[1];
   if (authToken) {
     setCookie("accessToken", authToken, {
       expires: AUTH_EXPIRATION_TIME,
+      path: "/",
     });
   }
   if (refreshToken !== getCookie("refreshToken")) {
@@ -47,6 +48,6 @@ export const setCookies = (rawData) => {
   }
 };
 
-export const deleteCookie = (name) => {
+export const deleteCookie = (name: string) => {
   setCookie(name, null, { expires: -1 });
 };

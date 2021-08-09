@@ -9,7 +9,7 @@ type TProps = {
 };
 
 const BurgerConstructorItems: React.FC<TProps> = (props) => {
-  const { constructorBunsType, constructorIngredients } = useSelector(
+  const { constructorBunsType, constructorIngredients } = useSelector<{ constructorBunsType: TBurgerIngredient, constructorIngredients: TBurgerIngredient[] }>(
     (store) => store.burgerConstructorReducer
   );
   const { setOrderPrice } = props;

@@ -1,10 +1,12 @@
-export const socketMiddleware = (wsUrl, wsActions) => {
-  return (store) => {
-    let socket = null;
+import { TWSConnectionActions } from "../actions/feed-socket";
 
-    return (next) => (action) => {
-      const { dispatch } = store;
-      const { type, payload } = action;
+export const socketMiddleware = (wsUrl: string, wsActions: any) => {
+  return (store: any) => {
+    let socket: WebSocket | null = null;
+
+    return (next: any) => (action: TWSConnectionActions) => {
+      const { dispatch, payload } = store;
+      const { type } = action;
       const { wsInit, wsSendMessage, onOpen, onClose, onError, onMessage } =
         wsActions;
 
@@ -17,21 +19,21 @@ export const socketMiddleware = (wsUrl, wsActions) => {
       }
 
       if (socket) {
-        socket.onopen = (event) => {
+        socket.onopen = (event: Event) => {
           dispatch({ type: onOpen, payload: event });
         };
 
-        socket.onerror = (event) => {
+        socket.onerror = (event: Event) => {
           dispatch({ type: onError, payload: event });
         };
 
-        socket.onmessage = (event) => {
+        socket.onmessage = (event: MessageEvent) => {
           const parsedData = JSON.parse(event.data);
           const { success, ...message } = parsedData;
           dispatch({ type: onMessage, message: message });
         };
 
-        socket.onclose = (event) => {
+        socket.onclose = (event: CloseEvent) => {
           dispatch({ type: onClose, payload: event });
         };
 

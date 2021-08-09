@@ -1,9 +1,4 @@
-import {
-  AppDispatch,
-  AppThunk,
-  RootState,
-  TBurgerIngredient,
-} from "../../types/types";
+import { AppDispatch, AppThunk, TBurgerIngredient } from "../../types/types";
 
 export const BURGER_CONSTRUCTOR_UPDATE: "BURGER_CONSTRUCTOR_UPDATE" =
   "BURGER_CONSTRUCTOR_UPDATE";
@@ -28,7 +23,7 @@ const getUniqueNumber = () => {
 export const addNewConstructorIngredient: AppThunk = (
   item: TBurgerIngredient
 ) => {
-  return function(dispatch: AppDispatch, getState: RootState) {
+  return function(dispatch: AppDispatch, getState: any) {
     const getSelfKey = () => {
       return `${item._id}_${getUniqueNumber()}`;
     };
@@ -55,7 +50,7 @@ export const addNewConstructorIngredient: AppThunk = (
 };
 
 export const removeConstructorIngredient = (itemUniqueKey: string) => {
-  return (dispatch: AppDispatch, getState: RootState) => {
+  return (dispatch: AppDispatch, getState: any) => {
     const constructor = getState().burgerConstructorReducer;
     const constructorIngredientsUpdated = [
       ...constructor.constructorIngredients,
@@ -69,15 +64,13 @@ export const removeConstructorIngredient = (itemUniqueKey: string) => {
 
     dispatch({
       type: BURGER_CONSTRUCTOR_UPDATE,
-      updatedConstructor: {
-        constructorIngredients: constructorIngredientsUpdated,
-      },
+      updatedConstructor: constructorIngredientsUpdated,
     });
   };
 };
 
 export const moveIngredients = (dragIndex: number, hoverIndex: number) => {
-  return (dispatch: AppDispatch, getState: RootState) => {
+  return (dispatch: AppDispatch, getState: any) => {
     const constructor = getState().burgerConstructorReducer;
     const constructorIngredientsUpdated = [
       ...constructor.constructorIngredients,
@@ -87,9 +80,7 @@ export const moveIngredients = (dragIndex: number, hoverIndex: number) => {
     constructorIngredientsUpdated.splice(hoverIndex, 0, draggedElement);
     dispatch({
       type: BURGER_CONSTRUCTOR_UPDATE,
-      updatedConstructor: {
-        constructorIngredients: constructorIngredientsUpdated,
-      },
+      updatedConstructor: constructorIngredientsUpdated,
     });
   };
 };

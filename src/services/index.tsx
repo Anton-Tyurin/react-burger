@@ -14,7 +14,7 @@ import { socketMiddleware } from "./middleware/socketMiddleware";
 
 const wsUrl = ORDERS_WS_URL;
 
-const wsActions = {
+export const wsActions = {
   wsInit: WS_CONNECTION_START,
   onOpen: WS_CONNECTION_SUCCESS,
   onClose: WS_CONNECTION_CLOSED,
@@ -22,13 +22,13 @@ const wsActions = {
   onMessage: WS_GET_ORDERS,
 };
 
-const composeEnhancers =
-  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-    : compose;
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
 
-const enhancer = composeEnhancers(
-  applyMiddleware(thunk, socketMiddleware(wsUrl, wsActions))
-);
+export const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+const enhancer = composeEnhancers(applyMiddleware( thunk, socketMiddleware(wsUrl, wsActions)));
 export const store = createStore(rootReducer, enhancer);

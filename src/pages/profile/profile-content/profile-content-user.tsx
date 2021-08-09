@@ -21,7 +21,7 @@ export const ProfileContentUser: React.FC = () =>  {
   });
   const [reservedUserData, setReservedUserData] =
     React.useState<{ name: string; password: string; email: string } | null>(null);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch() as any;
 
   useEffect(() => {
     dispatch(getUserCredentials())

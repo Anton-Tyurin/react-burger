@@ -1,5 +1,5 @@
-export const executePostRequest = async (endPoint, formData, headers) => {
-  const options = {
+export const executePostRequest = async (endPoint: string, formData: any, headers?: any) => {
+  const options: any = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -16,8 +16,8 @@ export const executePostRequest = async (endPoint, formData, headers) => {
   }
 };
 
-export const executeGetRequest = async (endPoint, headers) => {
-  const options = {
+export const executeGetRequest = async (endPoint: string, headers?: any) => {
+  const options: any = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -33,8 +33,8 @@ export const executeGetRequest = async (endPoint, headers) => {
   }
 };
 
-export const executePatchRequest = async (endPoint, formData, headers) => {
-  const options = {
+export const executePatchRequest = async (endPoint: string, formData: any, headers?: any) => {
+  const options: any = {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

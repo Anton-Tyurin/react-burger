@@ -6,7 +6,8 @@ import React from "react";
 import { executePostRequest } from "../executeRequest";
 import { getCookie } from "../../utils/cookie";
 import { updateToken } from "./auth";
-import {AppDispatch, AppThunk, RootState} from "../../types/types";
+import { AppThunk } from "../../types/types";
+import { RootStateOrAny } from "react-redux";
 
 export const ORDER_NUMBER_REQUEST: "ORDER_NUMBER_REQUEST" =
   "ORDER_NUMBER_REQUEST";
@@ -39,13 +40,14 @@ export type TOrderNumberActions =
   | IOrderNumberSuccess;
 
 export const getOrderNumber: AppThunk = () => {
-  return async function(dispatch: AppDispatch, getState: RootState) {
+  return async function(dispatch: any, getState: RootStateOrAny) {
     dispatch({
       type: ORDER_NUMBER_REQUEST,
     });
     const constructorData = getState().burgerConstructorReducer;
     const allIngredients = [
       ...constructorData.constructorIngredients,
+      constructorData.constructorBunsType,
       constructorData.constructorBunsType,
     ];
     const orderInfo = allIngredients?.map((el) => el?._id);

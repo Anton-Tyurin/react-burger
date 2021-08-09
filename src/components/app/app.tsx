@@ -21,7 +21,7 @@ import { useDispatch } from "react-redux";
 import { getBurgerIngredients } from "../../services/actions/burger-ingredients";
 import { FeedDetails } from "../modal/modal-types/feed-order-details/feed-order-details";
 import { FeedDetailsPage } from "../../pages/feed-order/feed-order-page";
-import { TLocation, useSelector } from "../../types/types";
+import {RootState, TBurgerIngredient, TLocation, useSelector} from "../../types/types";
 
 const App: React.FC = () => {
   const location = useLocation<TLocation>();
@@ -36,8 +36,8 @@ const App: React.FC = () => {
     history.goBack();
   };
 
-  const { ingredientsData, isLoading } = useSelector(
-    (store) => store.burgerIngredientsReducer
+  const { ingredientsData, isLoading } = useSelector<{ingredientsData: TBurgerIngredient[], isLoading: boolean}>(
+    (store: RootState) => store.burgerIngredientsReducer
   );
   React.useEffect(() => {
     dispatch(getBurgerIngredients());
@@ -115,6 +115,6 @@ const App: React.FC = () => {
       </>
     </div>
   );
-}
+};
 
 export default App;

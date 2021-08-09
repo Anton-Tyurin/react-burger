@@ -3,7 +3,7 @@ import style from "./feed.module.css";
 import OrdersItem from "../../components/order-item/orders-item";
 import { WS_CONNECTION_START } from "../../services/actions/feed-socket";
 import OrdersBoard from "../../components/orders-board/orders-board";
-import {TBurgerOrder, useDispatch, useSelector} from "../../types/types";
+import {RootState, TBurgerOrder, useDispatch, useSelector} from "../../types/types";
 
 export const FeedPage: React.FC = () =>  {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ export const FeedPage: React.FC = () =>  {
     dispatch({ type: WS_CONNECTION_START });
   }, []);
 
-  const { ordersData } = useSelector((store) => store.wsOrdersReducer);
+  const { ordersData } = useSelector<{ordersData: TBurgerOrder[]}>((store: RootState) => store.wsOrdersReducer);
 
   return (
     <div>

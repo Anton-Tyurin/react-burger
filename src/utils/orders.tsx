@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
+import {RootState, TBurgerIngredient, TBurgerOrder, useSelector} from "../types/types";
 
-export const getFixedDate = (orderCreateTime) => {
+export const getFixedDate = (orderCreateTime: string) => {
   const inputDate = new Date(orderCreateTime);
   const dateNow = new Date();
   const outputDate =
@@ -19,45 +19,45 @@ export const getFixedDate = (orderCreateTime) => {
   return `${outputDate}, ${outputTime} i-GMT${GMT > 0 ? `+${GMT}` : GMT}`;
 };
 
-export const getOrderData = (orderIngredients) => {
-  const { ingredientsData } = useSelector(
-    (store) => store.burgerIngredientsReducer
+export const getOrderData: (orderIngredients: string[]) => any = (orderIngredients: string[]) => {
+  const { ingredientsData } = useSelector<{ingredientsData: TBurgerIngredient[]}>(
+    (store: RootState) => store.burgerIngredientsReducer
   );
-  return orderIngredients?.map((item) =>
-    ingredientsData.find((ingredient) => ingredient._id === item)
+  return orderIngredients?.map((item: string) =>
+    ingredientsData.find((ingredient: TBurgerIngredient) => ingredient._id === item)
   );
 };
 
-export const getUnicData = (orderData) => {
-  const { ingredientsData } = useSelector(
-    (store) => store.burgerIngredientsReducer
+export const getUnicData = (orderData: string[]) => {
+  const { ingredientsData } = useSelector<{ingredientsData: TBurgerIngredient[]}>(
+    (store: RootState) => store.burgerIngredientsReducer
   );
-  return ingredientsData?.filter((val) => orderData?.includes(val._id));
+  return ingredientsData?.filter((val: TBurgerIngredient) => orderData?.includes(val._id));
 };
 
-export const getOrdersStatuses = (ordersAllData) => {
+export const getOrdersStatuses = (ordersAllData: TBurgerOrder[]) => {
   let doneOrders = [],
     pendingOrders = [];
   for (let i = 0; i < ordersAllData.length; i += 1) {
     if (ordersAllData[i].status === "done" && doneOrders.length < 5) {
-      doneOrders.push(ordersAllData[i].number);
+      doneOrders.push(ordersAllData[i].number.toString());
     }
     if (ordersAllData[i].status === "pending" && pendingOrders.length < 5) {
-      pendingOrders.push(ordersAllData[i].number);
+      pendingOrders.push(ordersAllData[i].number.toString());
     }
-    if (pendingOrders > 4 && doneOrders > 4) {
+    if (pendingOrders.length > 4 && doneOrders.length > 4) {
       break;
     }
   }
   return { doneOrders, pendingOrders };
 };
 
-export const getOrderPrice = (orderData) =>
-  orderData.reduce((acc, el) => {
+export const getOrderPrice = (orderData: TBurgerIngredient[]) =>
+  orderData?.reduce((acc: number, el: TBurgerIngredient) => {
     return acc + el?.price;
   }, 0);
 
-export const getStatusName = (orderStatus) => {
+export const getStatusName = (orderStatus: string) => {
   switch (orderStatus) {
     case "done": {
       return "Выполнен";

@@ -32,7 +32,7 @@ export const BurgerIngredientsCard: React.FC<TProps> = React.memo((props) => {
       constructorBunsType,
     ];
     return actualBunsAndIngredients?.filter(
-        (item) => item && cardData._id === item._id
+        (item: TBurgerIngredient) => item && cardData._id === item._id
     ).length;
   }, [constructorBunsType, constructorIngredients, cardData]);
 

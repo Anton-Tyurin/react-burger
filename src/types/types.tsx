@@ -16,8 +16,9 @@ import { TOrderNumberActions } from "../services/actions/order-details";
 import { TRegisterActions } from "../services/actions/register";
 import { TResetPasswordActions } from "../services/actions/reset-password";
 import { TUserDataActions } from "../services/actions/user-profile";
+import { rootReducer } from "../services/reducers";
 
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof rootReducer>;
 
 export type TAppActions =
   | TAuthActions
@@ -40,9 +41,9 @@ export const useSelector: TypedUseSelectorHook<RootState> = selectorHook;
 export const useDispatch = () => dispatchHook<AppDispatch | AppThunk>();
 
 export type TDropIngredient = {
-  item:TBurgerIngredient,
-  index:number,
-}
+  item: TBurgerIngredient;
+  index: number;
+};
 
 export type TBurgerIngredient = {
   _id: string;

@@ -11,7 +11,7 @@ export const ProfileContentOrderPage: React.FC = () =>  {
     dispatch({ type: WS_CONNECTION_START, payload: { token: token } });
   }, []);
 
-  const { ordersData } = useSelector((store) => store.wsOrdersReducer);
+  const { ordersData } = useSelector<{ordersData: TBurgerOrder[]}>((store) => store.wsOrdersReducer);
 
   return (
     <section>

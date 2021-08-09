@@ -12,6 +12,7 @@ import {
 import { WS_CONNECTION_START } from "../../services/actions/feed-socket";
 import { getCookie } from "../../utils/cookie";
 import {TBurgerIngredient, TBurgerOrder, useDispatch, useSelector} from "../../types/types";
+import {RootStateOrAny} from "react-redux";
 
 export const FeedDetailsPage: React.FC = () =>  {
   const dispatch = useDispatch();
@@ -22,13 +23,13 @@ export const FeedDetailsPage: React.FC = () =>  {
   }, []);
 
   const selectedOrder = useSelector(
-    (store) =>
+    (store: RootStateOrAny) =>
       store.wsOrdersReducer.ordersData?.filter((el: TBurgerOrder) => el._id === id)[0]
   );
   const orderData = getOrderData(selectedOrder?.ingredients);
   const unicData = getUnicData(selectedOrder?.ingredients);
   const getIngredientsCount = (id: string) =>
-    orderData.filter((e: TBurgerOrder) => e._id === id).length;
+    orderData.filter((e: TBurgerIngredient) => e._id === id).length;
 
   return (
     <>

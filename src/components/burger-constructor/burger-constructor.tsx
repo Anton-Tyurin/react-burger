@@ -14,17 +14,27 @@ import {
   ORDER_NUMBER_DELETE,
 } from "../../services/actions/order-details";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "../../types/types";
+import {
+  RootState,
+  TBurgerIngredient,
+  useDispatch,
+  useSelector,
+} from "../../types/types";
 
 export const BurgerConstructor: React.FC = React.memo(() => {
   const dispatch = useDispatch();
   const [orderPrice, setOrderPrice] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>();
-  const { constructorBunsType, constructorIngredients } = useSelector(
-    (store) => store.burgerConstructorReducer
+  const { constructorBunsType, constructorIngredients } = useSelector<{
+    constructorBunsType: TBurgerIngredient;
+    constructorIngredients: TBurgerIngredient[];
+  }>((store: RootState) => store.burgerConstructorReducer);
+  const { orderNumber } = useSelector<{ orderNumber: number }>(
+    (store: RootState) => store.orderDetailsReducer
   );
-  const { orderNumber } = useSelector((store) => store.orderDetailsReducer);
-  const { isLoggedIn } = useSelector((store) => store.authReducer);
+  const { isLoggedIn } = useSelector<{ isLoggedIn: boolean }>(
+    (store: RootState) => store.authReducer
+  );
   const history = useHistory();
   const constructorHasItems =
     constructorBunsType || !!constructorIngredients?.length;
